@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        'use strict'
+        class Post { //создаем  Post  через class
+            constructor(author, text, date) { // создаем констурктор с параметрами
+                this.author = author; // свойство обьекта
+                this.text = text; // свойство обьекта
+                this.date = date; // свойство обьекта
+            }
+            edit(text) {
+                this.text = text;
+            }
+
+        }
+        let post1 = new Post('ADMIN', 'Hey now', new Date());
+        console.log(post1);
+        post1.edit('not hey');
+        console.log(post1);
+
+        class AttachedPost extends Post { // наследуем
+            constructor(author, text, date) {
+                super(author, text, date); //метод call не нужен, переход на автомате
+                this.highlighted = false; //создаваем свойство highlighted со значением false
+            }
+            makeTextHighlighted() { // добавляем метод
+                this.highlighted = true;
+            }
+        }
+
+        let attached1 = new AttachedPost('user', 'hello world', new Date());
+        console.log(attached1);
+        attached1.makeTextHighlighted();
+        attached1.edit('Good wether')
+        console.log(attached1);
+
+
+
+    </script>
+</body>
+
+</html>
