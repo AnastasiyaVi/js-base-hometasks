@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        'use strict'
+        function Post(author, text, date) { //создаем констуктор Post с параметрами author, text, date
+            this.author = author; // свойство обьекта
+            this.text = text; // свойство обьекта
+            this.date = date; // свойство обьекта
+        }
+        Post.prototype.edit = function (text) { //у объектов типа Post есть метод edit, который принимает текст и записывает его в свойство text объекта
+            this.text = text;
+        };
+        let post1 = new Post('ADMIN', 'Hey now', new Date());
+        console.log(post1);
+        post1.edit('not hey');
+        console.log(post1);
+
+        function AttachedPost(author, text, date) { //создаем констуктор AttachedPost с параметрами author, text, date
+            Post.call(this, author, text, date); //Проинициализируем эти свойства с помощью конструктора Post, чтобы не дублировать код
+            this.highlighted = false; //создаваем свойство highlighted со значением false
+        }
+        AttachedPost.prototype = Object.create(Post.prototype); //наследуем в объектах типа AttachedPost методы из Post.
+        AttachedPost.prototype.constructor = AttachedPost; //возвращаем конструктор
+
+        AttachedPost.prototype.makeTextHighlighted = function () { // добавляем в прототип AttachedPost метод makeTextHighlighted
+            this.highlighted = true; // свойство
+        }
+
+        let attached1 = new AttachedPost('user', 'hello world', new Date());
+        console.log(attached1);
+        attached1.makeTextHighlighted();
+        attached1.edit('Good wether')
+        console.log(attached1);
+
+
+
+    </script>
+</body>
+
+</html>
