@@ -1,0 +1,22 @@
+.gorbage {
+    width: 300px;
+    position: absolute;
+    z-index: 5;
+    right: 2px;
+    top: 100px;
+    min-height: 50px;
+    background-color: rgb(234, 245, 245);
+    display: flex;
+    justify-content: center;
+    padding: 10px;
+    flex-direction: column;
+    display: block;
+
+}
+
+.garbage-block {
+    width: 100%;
+    min-height: 50px;
+    border: 1px solid black;
+    margin: 2px 0 2px 0;
+}
